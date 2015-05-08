@@ -11,6 +11,10 @@ var router = function(app) {
     app.get("/maker", mid.requiresLogin, controllers.Locator.makerPage);
     app.post("/maker", mid.requiresLogin,  controllers.Locator.make);
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+    app.get("/profile", mid.requiresLogin, controllers.Adventure.profilePage);
+    app.get("/adventure", mid.requiresLogin, controllers.Adventure.adventurePage);
+    app.post("/adventure", mid.requiresLogin,  controllers.Adventure.adventurePost);
+    app.get("/pastadventure", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
 };
 
 module.exports = router; 

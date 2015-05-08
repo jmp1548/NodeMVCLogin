@@ -1,0 +1,32 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
+block body
+  nav
+    a(href="/login")
+    .navlink
+      a(href="/logout") Log out
+  section
+    h1 Adventure Page
+    form#locationsForm(class="domoForm", name="domoForm", action="/maker", method="POST")
+      div#formActions
+          label(for="name") Longitude: 
+          input#longitude(type="text", name="longitude", placeholder="longitude")
+          label(for="age") Latitude: 
+          input#latitude(type="text", name="latitude", placeholder="latitude")
+          a#getLocations(class="getButton", href="#") Get Location
+          a#setLocations(class="submitbutton", href="#") Submit Locations 
+      div#errorMessage
+  img(class="ajaxLoader", src="/assets/img/ajax-loader.gif" alt="Loading Image")
+  section#Locations
+    if !locations || locations.length == 0
+        div.location
+            h3.emptyLocations No Locations yet
+    else
+        each val in locations
+            div.location
+                h3.longitude Longitude: #{val.longitude}
+                h3.latitude Latitude: #{val.latitude}
+                h3.username Username: #{val.username}
+block scripts
+        script(src="/assets/locator.js")

@@ -13,7 +13,9 @@ var router = function(app) {
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
     app.get("/profile", mid.requiresLogin, controllers.Adventure.profilePage);
     app.get("/adventure", mid.requiresLogin, controllers.Adventure.adventurePage);
-    app.post("/adventure", mid.requiresLogin,  controllers.Adventure.adventurePost);
+    app.post("/post", mid.requiresLogin,  controllers.Adventure.adventurePost);
+    app.post("/point", mid.requiresLogin,  controllers.Adventure.adventurePath);
+    app.post("/start", mid.requiresLogin,  controllers.Adventure.adventureStart);
     app.get("/pastadventure", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
 };
 

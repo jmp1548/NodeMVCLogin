@@ -8,15 +8,40 @@ block body
       a(href="/logout") Log out
   section
     h1 Adventure Page
-    form#locationsForm(class="domoForm", name="domoForm", action="/maker", method="POST")
-      div#formActions
-          label(for="name") Longitude: 
-          input#longitude(type="text", name="longitude", placeholder="longitude")
-          label(for="age") Latitude: 
-          input#latitude(type="text", name="latitude", placeholder="latitude")
-          a#getLocations(class="getButton", href="#") Get Location
-          a#setLocations(class="submitbutton", href="#") Submit Locations 
-      div#errorMessage
+      form#adventureForm(class="adventureForm", name="adventureForm", action="/start", method="POST")
+        div#formActions
+            h2 Start new adventure form
+            label(for="title") Title: 
+            input#atitle(type="text", name="title", placeholder="title")
+            label(for="longitude") Longitude: 
+            input#alongitude(type="text", name="longitude", placeholder="longitude")
+            label(for="age") Latitude: 
+            input#alatitude(type="text", name="latitude", placeholder="latitude")
+            a#agetLocations(class="getButton", href="#") Get Location
+            a#addAdventure(class="submitbutton", href="#") Submit Locations 
+        div#errorMessage
+    form#pointForm(class="pointForm", name="pointForm", action="/point", method="POST")
+        div#formActions
+            h2 Add path point form
+            label(for="longitude") Longitude: 
+            input#olongitude(type="text", name="longitude", placeholder="longitude")
+            label(for="age") Latitude: 
+            input#olatitude(type="text", name="latitude", placeholder="latitude")
+            a#ogetLocations(class="getButton", href="#") Get Location
+            a#addPoint(class="submitbutton", href="#") Submit Point 
+        div#errorMessage
+    form#postForm(class="postForm", name="postForm", action="/post", method="POST")
+        div#formActions
+            h2 Start new adventure form
+            label(for="post") Post: 
+            input#post(type="text", name="post", placeholder="post content goes here")
+            label(for="longitude") Longitude: 
+            input#plongitude(type="text", name="longitude", placeholder="longitude")
+            label(for="age") Latitude: 
+            input#platitude(type="text", name="latitude", placeholder="latitude")
+            a#pgetLocations(class="getButton", href="#") Get Location
+            a#addPost(class="submitbutton", href="#") Submit Post 
+        div#errorMessage
   img(class="ajaxLoader", src="/assets/img/ajax-loader.gif" alt="Loading Image")
   section#Locations
     if !locations || locations.length == 0
@@ -27,6 +52,5 @@ block body
             div.location
                 h3.longitude Longitude: #{val.longitude}
                 h3.latitude Latitude: #{val.latitude}
-                h3.username Username: #{val.username}
 block scripts
-        script(src="/assets/locator.js")
+        script(src="/assets/adventure.js")

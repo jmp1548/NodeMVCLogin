@@ -19,14 +19,13 @@ block body
       div#errorMessage
   img(class="ajaxLoader", src="/assets/img/ajax-loader.gif" alt="Loading Image")
   section#Locations
-    if !locations || locations.length == 0
+    if !adventures || adventures.length == 0
         div.location
             h3.emptyLocations No Locations yet
     else
-        each val in locations
+        each val in adventures
             div.location
+                h3.title Title: #{val.title}
                 h3.longitude Longitude: #{val.longitude}
                 h3.latitude Latitude: #{val.latitude}
-                h3.username Username: #{val.username}
-block scripts
         script(src="/assets/locator.js")

@@ -34,7 +34,8 @@ pathSchema.methods.toAPI = function() {
         longitude: this.longitude,
         latitude: this.latitude,
         adventureid:this.adventureid,
-        timestamp:this.timestamp
+        timestamp:this.timestamp,
+        _id: this._id 
     };
 };
 

@@ -25,6 +25,12 @@ var profilePage = function(req, res) {
         
     });
 };
+
+//added map page
+var mapPage = function(req, res){
+    res.render('map');
+}
+
 var pastAdventurePage = function(req, res) {
      
             res.json({redirect: '/profile'});
@@ -170,6 +176,8 @@ var adventurePost = function(req, res) {
     
 };
 
+
+module.exports.mapPage = mapPage;
 module.exports.profilePage = profilePage;
 module.exports.pastAdventurePage = pastAdventurePage;
 module.exports.adventurePath=adventurePoint;

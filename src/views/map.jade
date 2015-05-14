@@ -1,0 +1,9 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
+block body
+    div#map-div
+block scripts
+        script(src="/assets/locator.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6RYGB6WBp3etiIGhfuFE6CBpjAo-hJW4")
+        script(src="/assets/map.js")

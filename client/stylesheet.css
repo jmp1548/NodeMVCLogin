@@ -6,6 +6,11 @@ html, body {
     overflow-x: hidden;
 }
 
+#map-div{
+    height: 50%;
+    width: 100%;
+}
+
 #logo {
     height: 40px;
     width: 40;

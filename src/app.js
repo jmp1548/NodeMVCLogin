@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var url = require('url');
- 
+var compass = require('node-compass');
+
 var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/test";
 
 var db = mongoose.connect(dbURL, function(err) {
@@ -36,6 +37,10 @@ var server;
 var port = process.env.PORT || process.env.NODE_PORT || 3000; 
 
 var app = express(); 
+
+//node compass (sass)
+app.use(compass());
+
 app.use('/assets', express.static(path.resolve(__dirname+'../../client/'))); 
 app.use(compression()); 
 app.use(bodyParser.urlencoded({ 

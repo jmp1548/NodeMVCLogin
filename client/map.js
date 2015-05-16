@@ -3,9 +3,9 @@
 var map;
 var marker;
 var poly;
+var watchId;
 
 var geoOptions = {
-    maximumAge: 10000,
     enableHighAccuracy: true
 };
 
@@ -20,29 +20,31 @@ function showCoords(position) {
     var long = position.coords.longitude;
     var path = poly.getPath();
     var locations = [];
-    
+
     map.setZoom(30);
-    
+
     locations.push({
         latlng: new google.maps.LatLng(lat, long)
     });
 
-    var infowindow = new google.maps.InfoWindow({
-        content: "<div>" + lat + "</div>"
+    var startInfowindow = new google.maps.InfoWindow({
+        content: "<div>Start Position</div>"
+    });
+
+    var marker = new google.maps.Marker({
+        position: locations[0].latlng,
+        map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
     });
 
     for (var i = 0; i < locations.length; i++) {
         console.log(locations[i].latlng);
-        var marker = new google.maps.Marker({
-            position: locations[i].latlng,
-            map: map
-        });
         map.panTo(
             locations[i].latlng
         );
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map, marker);
-        });
         path.push(locations[i].latlng);
     }
 }
@@ -52,9 +54,13 @@ function geoError() {
 }
 
 function init() {
-    setInterval(function () {
-        navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
-    }, 1000);
+    //setInterval(function () {
+    //  navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
+    //}, 1000);
+
+    GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
+        throttleTime: 5000
+    };
 
     var mapOptions = {
         center: {

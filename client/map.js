@@ -4,6 +4,8 @@ var map;
 var marker;
 var poly;
 var watchId;
+var locations = [];
+
 
 var geoOptions = {
     enableHighAccuracy: true
@@ -19,8 +21,7 @@ function showCoords(position) {
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     var path = poly.getPath();
-    var locations = [];
-
+    
     map.setZoom(30);
 
     locations.push({
@@ -41,7 +42,7 @@ function showCoords(position) {
     });
 
     for (var i = 0; i < locations.length; i++) {
-        console.log(locations[i].latlng);
+        console.log(locations);
         map.panTo(
             locations[i].latlng
         );
@@ -54,13 +55,13 @@ function geoError() {
 }
 
 function init() {
-    //setInterval(function () {
-    //  navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
-    //}, 1000);
+    setInterval(function () {
+      navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
+    }, 1000);
 
-    GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
-        throttleTime: 5000
-    };
+    //GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
+      //  throttleTime: 5000
+    //};
 
     var mapOptions = {
         center: {

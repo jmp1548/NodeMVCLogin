@@ -7,6 +7,7 @@ block body
     .navlink
       a(href="/logout") Log out
   section
+    div#map-div
     h1 Adventure Page
       form#adventureForm(class="adventureForm", name="adventureForm", action="/start", method="POST")
         div#formActions
@@ -54,3 +55,6 @@ block body
                 h3.latitude Latitude: #{val.latitude}
 block scripts
         script(src="/assets/adventure.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6RYGB6WBp3etiIGhfuFE6CBpjAo-hJW4")
+        script(src="/assets/geolocation-throttle.js")
+        script(src="/assets/map.js")

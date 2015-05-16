@@ -10,7 +10,7 @@ var RedisStore = require('connect-redis')(session);
 var url = require('url');
 var compass = require('node-compass');
 
-var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/test";
+var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/adventure";
 
 var db = mongoose.connect(dbURL, function(err) {
     if(err) {

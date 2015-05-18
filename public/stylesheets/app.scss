@@ -1,5 +1,17 @@
-$blue: blue;
+//import bourbon library and bourbon neat grid
+@import './sass/bourbon/bourbon';
+@import './sass/neat/neat';
 
-.test{
-    color: $blue;
-}
+//mixins
+@import './sass/mixins';
+//global styles
+@import './sass/global';
+
+//modal
+@import './sass/modal';
+//menu
+@import './sass/menu';
+//login styles
+@import './sass/login';
+//adventure styles
+@import './sass/adventure';

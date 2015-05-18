@@ -21,7 +21,6 @@ function showCoords(position) {
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     var path = poly.getPath();
-    
     map.setZoom(30);
 
     locations.push({
@@ -29,7 +28,6 @@ function showCoords(position) {
     });
 
     var startInfowindow = new google.maps.InfoWindow({
-        content: "<div>Start Position</div>"
     });
 
     var marker = new google.maps.Marker({
@@ -38,7 +36,6 @@ function showCoords(position) {
     });
 
     google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, marker);
     });
 
     for (var i = 0; i < locations.length; i++) {
@@ -50,18 +47,10 @@ function showCoords(position) {
     }
 }
 
-function geoError() {
-    //erorr   
 }
 
 function init() {
-    setInterval(function () {
-      navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
-    }, 1000);
 
-    //GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
-      //  throttleTime: 5000
-    //};
 
     var mapOptions = {
         center: {

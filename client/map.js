@@ -5,7 +5,7 @@ var marker;
 var poly;
 var watchId;
 var locations = [];
-
+var watchCount = 0;
 
 var geoOptions = {
     enableHighAccuracy: true
@@ -18,9 +18,10 @@ function getLocation() {
 }
 
 function showCoords(position) {
+    watchCount++;
+
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
-    var path = poly.getPath();
 
     map.setZoom(30);
 
@@ -28,49 +29,59 @@ function showCoords(position) {
         latlng: new google.maps.LatLng(lat, long)
     });
 
+    console.log(locations);
+
+    drawNext();
+}
+
+function drawNext() {
+    var lastElem = locations[locations.length - 1];
+    var path = poly.getPath();
+    path.push(lastElem.latlng);
+
+    map.panTo(lastElem.latlng);
+
     var startInfowindow = new google.maps.InfoWindow({
-        content: "<h3>Start Position</h3><br/><strong>Latitute: </strong><small>" + lat + "</small><br/><strong>Longitude: </strong><small>" + long + "</small>"
+        content: "<h3>Start Position</h3>"
     });
 
-    var marker = new google.maps.Marker({
-        position: locations[0].latlng,
-        animation: google.maps.Animation.DROP,
-        map: map
-    });
+    if (locations.length == 1) {
+        var marker = new google.maps.Marker({
+            position: locations[0].latlng,
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
 
-    google.maps.event.addListener(marker, 'click', function () {
-        startInfowindow.open(map, marker);
-    });
-
-    for (var i = 0; i < locations.length; i++) {
-        //console.log(locations);
-        map.panTo(
-            locations[i].latlng
-        );
-        path.push(locations[i].latlng);
+        google.maps.event.addListener(marker, 'click', function () {
+            startInfowindow.open(map, marker);
+        });
     }
 }
 
 function geoError(error) {
     //erorr 
-    alert('ERROR(' + error.code + '): ' + error.message);
-
-    //alert("");
+    alert('ERROR(' + error.code + '): ' + error.message + " Check if gps is on");
 }
 
 function init() {
-    //setInterval(function () {
-    //navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
-    //}, 1000);
+    window.setInterval(function () {
+        if (watchCount <= 2) {
+            watchId = navigator.geolocation.watchPosition(showCoords, geoError, geoOptions);
+        }
+        if (watchCount >= 2) {
+            clearWatch(watchId);
+            watchCount = 0;
+        }
+    }, 5000);
 
     if (!navigator.geolocation) {
         output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
         return;
     }
 
-    watchId = GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
-        throttleTime: 5000
-    };
+    //watchId = GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
+    //  throttleTime: 5000
+    ///};
 
     var mapOptions = {
         center: {
@@ -91,6 +102,7 @@ function init() {
 
     poly = new google.maps.Polyline(polyOptions);
     poly.setMap(map);
+
 }
 
 function clearWatch(watchId) {

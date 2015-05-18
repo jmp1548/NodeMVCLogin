@@ -29,8 +29,6 @@ var adventureSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-    
-    
 
 });
 
@@ -40,7 +38,7 @@ adventureSchema.methods.toAPI = function() {
         longitude: this.longitude,
         latitude: this.latitude,
         createdData:this.createdData,
-        _id: this._id  
+        _id: this._id.toString()  
     };
 };
 

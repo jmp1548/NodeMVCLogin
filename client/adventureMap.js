@@ -32,7 +32,6 @@ function showCoords(position) {
     });
 
     console.log(locations);
-
     drawNext();
 }
 

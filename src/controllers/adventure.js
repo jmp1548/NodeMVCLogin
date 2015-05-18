@@ -25,6 +25,26 @@ var profilePage = function(req, res) {
         
     });
 };
+var explorePage = function(req, res) {
+
+    Adventure.adventureModel.findByArea(44, 77, function(err, docs) {
+
+        if(err) {
+            console.log(err);
+            return res.status(400).json({error:'An error occurred'}); 
+        }
+        
+        console.log(docs);
+        if(docs[0] !='undefined'){
+           var adventure=docs[0];
+           console.log(adventure);
+           
+           //req.session.adventure = adventure.toAPI();
+           }
+        res.render('explore', {adventures: docs});
+        
+    });
+};
 
 //added map page
 var mapPage = function(req, res){
@@ -34,9 +54,9 @@ var mapPage = function(req, res){
 var pastAdventurePage = function(req, res) {
      
             
-    var productid = req.params.id || 0;
-    if(productid!=0){
-                Path.pathModel.findByAdventure(productid, function(err, docs) {
+    var adventureid = req.params.id || 0;
+    if(adventureid!=0){
+                Path.pathModel.findByAdventure(adventureid, function(err, docs) {
             
                     if(err) {
                         console.log(err);
@@ -45,7 +65,7 @@ var pastAdventurePage = function(req, res) {
                 
                 
                     console.log(docs);
-                    Post.postModel.findByAdventure(req.session.adventure._id, function(err, points) {
+                    Post.postModel.findByAdventure(adventureid, function(err, points) {
             
                             if(err) {
                                 console.log(err);
@@ -53,35 +73,14 @@ var pastAdventurePage = function(req, res) {
                             }
                             console.log(points);
                     
-                    res.render('existingadventure', {path: docs, posts: points});
+                    res.render('existingadventure', {path: docs, posts: points, adventure:req.session.adventure});
                     });
                 });
        }  
       
 };
 var adventurePage = function(req, res) {
-
-    /*Path.pathModel.findByAdventure(req.session.adventure._id, function(err, docs) {
-
-        if(err) {
-            console.log(err);
-            return res.status(400).json({error:'An error occurred'}); 
-        }
-        
-        console.log(docs);
-        Post.postModel.findByAdventure(req.session.adventure._id, function(err, points) {
-
-                if(err) {
-                    console.log(err);
-                    return res.status(400).json({error:'An error occurred'}); 
-                }
-                console.log(points);
-        
-        res.render('app', {path: docs, posts: points});
-        });
-    });*/
-    var docs=[];
-    res.render('adventure',{adventure:docs});
+    res.render('adventure');
 };
 var adventureStart = function(req, res) {
    

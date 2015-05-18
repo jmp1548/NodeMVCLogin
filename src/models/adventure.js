@@ -52,7 +52,15 @@ adventureSchema.statics.findByUser = function(ownerId, callback) {
 
     return adventureModel.find(search).select("longitude latitude title createdData").exec(callback);
 };
+adventureSchema.statics.findByArea = function(lat,long,radius, callback) {
+    var range=radius ||.10;
+    var search = {
+        longitude: {$gt: long-range, $lt: long+range},
+        latitude: {$gt: lat-range, $lt: lat+range}
+    };
 
+    return adventureModel.find(search).select("longitude latitude title createdData").exec(callback);
+};
 
 adventureModel = mongoose.model('Adventure', adventureSchema);
 

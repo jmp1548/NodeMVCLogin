@@ -7,26 +7,27 @@ block body
     .navlink
       a(href="/logout") Log out
   section
-    h1 Existing Adventure Page
-    form#locationsForm(class="domoForm", name="domoForm", action="/maker", method="POST")
-      div#formActions
-          label(for="name") Longitude: 
-          input#longitude(type="text", name="longitude", placeholder="longitude")
-          label(for="age") Latitude: 
-          input#latitude(type="text", name="latitude", placeholder="latitude")
-          a#getLocations(class="getButton", href="#") Get Location
-          a#setLocations(class="submitbutton", href="#") Submit Locations 
-      div#errorMessage
-  img(class="ajaxLoader", src="/assets/img/ajax-loader.gif" alt="Loading Image")
+    h1 #{adventure.title}
   section#Locations
-    if !locations || locations.length == 0
+    h1 Path points for this adventure
+    if !path|| path.length == 0
         div.location
             h3.emptyLocations No Locations yet
     else
-        each val in locations
+        each val in path
+            div.location
+                h3.longitude Longitude: #{val.longitude}
+                h3.latitude Latitude: #{val.latitude}                
+  section#Locations
+    h1 Posts for this Adventure
+    if !posts || posts.length == 0
+        div.location
+            h3.emptyLocations No Posts yet
+    else
+        each val in posts
             div.location
                 h3.longitude Longitude: #{val.longitude}
                 h3.latitude Latitude: #{val.latitude}
-                h3.username Username: #{val.username}
+                h3.content Content: #{val.content}
 block scripts
         script(src="/assets/locator.js")

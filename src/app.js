@@ -45,7 +45,6 @@ app.use('/assets', express.static(path.resolve(__dirname+'../../client/')));
 
 app.use('/assets', express.static(path.resolve(__dirname+'../../client/')));
 app.use('/public', express.static(path.resolve(__dirname+'../../public/'))); 
->>>>>>> Stashed changes
 app.use(compression()); 
 app.use(bodyParser.urlencoded({ 
   extended: true                

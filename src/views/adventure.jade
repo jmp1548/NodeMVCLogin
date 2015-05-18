@@ -2,7 +2,6 @@ extends ./base.jade
 block append style
     link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
 block body
-<<<<<<< HEAD
   ul(class="navigation")
     li(class="nav-item")
         a(href="/logout") Log Out
@@ -43,6 +42,9 @@ block body
                 input#platitude(type="hidden", name="latitude", placeholder="latitude")
                 a#addPost(class="submitbutton", href="#") Submit Post 
             div#errorMessage
+        form#uploadForm(enctype='multipart/form-data', action='/api/photo', method='post')
+            input(type='file' name='userPhoto', accept='image/*;capture=camera')
+            input(type='submit', value='Upload Image', name='submit')
 block scripts
         script(src="/assets/adventure.js")
         script(src="/assets/geolocation-throttle.js")

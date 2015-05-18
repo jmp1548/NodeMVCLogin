@@ -19,6 +19,10 @@ var router = function(app) {
     app.get("/pastadventure", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
     app.get("/pastadventure/:id", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
     app.get("/map", mid.requiresLogin, controllers.Adventure.mapPage);
+    app.post('/api/photo',function(req,res){if(done==true){
+            console.log(req.files);
+            res.end("File uploaded.");
+            }});
 };
 
 module.exports = router; 

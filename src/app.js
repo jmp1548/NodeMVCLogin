@@ -9,6 +9,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var url = require('url');
 var compass = require('node-compass');
+var multer  = require('multer');
 
 var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/adventure";
 
@@ -59,6 +60,20 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));    
+
+//configure multer
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+    return filename+Date.now();
+  },
+onFileUploadStart: function (file) {
+  console.log(file.originalname + ' is starting ...')
+},
+onFileUploadComplete: function (file) {
+  console.log(file.fieldname + ' uploaded to  ' + file.path)
+  done=true;
+}
+}));
 app.set('view engine', 'jade'); 
 app.set('views', __dirname + '/views'); 
 app.use(favicon(__dirname + '/../client/img/ajax-loader.gif')); 

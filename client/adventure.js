@@ -6,7 +6,12 @@ $(document).ready(function() {
         $("#errorMessage").text(message);
      }
     
-    function sendAjax(action, data) {
+    
+    $("#addAdventure").on("click", addAdventure);
+    $("#addPoint").on("click", addPoint);
+    $("#addPost").on("click", addPost);
+});
+function sendAjax(action, data) {
         $.ajax({
             cache: false,
             type: "POST",
@@ -24,49 +29,47 @@ $(document).ready(function() {
             }
         });        
     }
+function addAdventure(){
+       
+        if($("#atitle").val() === '') {
+            handleError("All fields are required");
+            return false;
+        }
+      
+        addLocation("adventureForm","a",submitForm);
+        return false;
+    }
+function addPoint(){
+        addLocation("pointForm","o",submitForm);
+        return false;
+    }
+function addPost(){
+       
+        if($("#post").val() === '') {
+            handleError("All fields are required");
+            return false;
+        }
+      
+        addLocation("postForm","p",submitForm);
+        return false;
+    }
+function submitForm(formName,startL, latitude, longitude){
+    console.log("Lat: "+latitude+" Long: "+longitude);
+    $("#"+startL+"longitude").val(longitude);
+    $("#"+startL+"latitude").val(latitude);
+    sendAjax($("#"+formName).attr("action"), $("#"+formName).serialize());
+}
+   
     
-    $("#addAdventure").on("click", function(e) {
-        e.preventDefault();
-        
-        if($("#alongitude").val() == '' || $("#alatitude").val() == '' || $("#atitle").val() == '') {
-            handleError("All fields are required");
-            return false;
-        }
-
-        sendAjax($("#adventureForm").attr("action"), $("#adventureForm").serialize());
-        
-        return false;
-    });
-     $("#addPoint").on("click", function(e) {
-        e.preventDefault();
-        
-        if($("#olongitude").val() == '' || $("#olatitude").val() == '' ) {
-            handleError("All fields are required");
-            return false;
-        }
-
-        sendAjax($("#pointForm").attr("action"), $("#pointForm").serialize());
-        
-        return false;
-    });
-     $("#addPost").on("click", function(e) {
-        e.preventDefault();
-        
-        if($("#plongitude").val() == '' || $("#platitude").val() == '' || $("#post").val() == '') {
-            handleError("All fields are required");
-            return false;
-        }
-        console.log($("#postForm").attr("action"));
-        sendAjax($("#postForm").attr("action"), $("#postForm").serialize());
-        
-        return false;
-    });
     
     $('.ajaxLoader').hide();
     
-    $("#ogetLocations").on('click', function(e){
-        e.preventDefault();
-        
+
+
+function addLocation(formName,startL,callback){
+    
+    console.log("in location");
+        var coords;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(show_map);
             $('.ajaxLoader').show();
@@ -75,50 +78,11 @@ $(document).ready(function() {
         }
         
         function show_map(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-             $('.ajaxLoader').hide();
-            
-            $("#olongitude").val(longitude);
-            $("#olatitude").val(latitude);
+            coords=position.coords;
+            callback(formName,startL,coords.latitude,coords.longitude);
         }
-    }); 
-$("#agetLocations").on('click', function(e){
-        e.preventDefault();
+        console.log("Lat: "+coords.latitude+" Long: "+coords.longitude);
         
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(show_map);
-            $('.ajaxLoader').show();
-        } else { 
-            handleError("Geolocation is not supported by this browser.");
-        }
-        
-        function show_map(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-             $('.ajaxLoader').hide();
-            
-            $("#alongitude").val(longitude);
-            $("#alatitude").val(latitude);
-        }
-    });  
-$("#pgetLocations").on('click', function(e){
-        e.preventDefault();
-        
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(show_map);
-            $('.ajaxLoader').show();
-        } else { 
-            handleError("Geolocation is not supported by this browser.");
-        }
-        
-        function show_map(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-             $('.ajaxLoader').hide();
-            
-            $("#plongitude").val(longitude);
-            $("#platitude").val(latitude);
-        }
-    });        
-});
+}
+
+

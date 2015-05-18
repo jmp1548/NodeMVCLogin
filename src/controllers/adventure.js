@@ -33,10 +33,10 @@ var mapPage = function(req, res){
 
 var pastAdventurePage = function(req, res) {
      
-            res.json({redirect: '/profile'});
-        
-   /* if(req.session.adventure!='undefined'){
-                Path.pathModel.findByAdventure(req.session.adventure._id, function(err, docs) {
+            
+    var productid = req.params.id || 0;
+    if(productid!=0){
+                Path.pathModel.findByAdventure(productid, function(err, docs) {
             
                     if(err) {
                         console.log(err);
@@ -57,7 +57,7 @@ var pastAdventurePage = function(req, res) {
                     });
                 });
        }  
-*/       
+      
 };
 var adventurePage = function(req, res) {
 

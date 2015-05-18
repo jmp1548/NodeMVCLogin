@@ -17,6 +17,7 @@ var router = function(app) {
     app.post("/point", mid.requiresLogin,  controllers.Adventure.adventurePath);
     app.post("/start", mid.requiresLogin,  controllers.Adventure.adventureStart);
     app.get("/pastadventure", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
+    app.get("/pastadventure/:id", mid.requiresLogin, controllers.Adventure.pastAdventurePage);
     app.get("/map", mid.requiresLogin, controllers.Adventure.mapPage);
 };
 

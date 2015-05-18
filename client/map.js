@@ -42,7 +42,7 @@ function showCoords(position) {
     });
 
     for (var i = 0; i < locations.length; i++) {
-        console.log(locations);
+        //console.log(locations);
         map.panTo(
             locations[i].latlng
         );

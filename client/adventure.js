@@ -35,7 +35,7 @@ function addAdventure(){
             handleError("All fields are required");
             return false;
         }
-      
+        console.log("in addAdventure");
         addLocation("adventureForm","a",submitForm);
         return false;
     }
@@ -69,20 +69,28 @@ function submitForm(formName,startL, latitude, longitude){
 function addLocation(formName,startL,callback){
     
     console.log("in location");
-        var coords;
-        if (navigator.geolocation) {
+        if(formName==="adventureForm"){
+            var coords=locations[0];
+           }
+        else{
+           var recent=locations.length-1 ;
+           var coords=locations[recent];
+           }
+        console.log(locations);
+       /* if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(show_map);
-            $('.ajaxLoader').show();
+           // $('.ajaxLoader').show();
         } else { 
             handleError("Geolocation is not supported by this browser.");
         }
         
         function show_map(position) {
             coords=position.coords;
-            callback(formName,startL,coords.latitude,coords.longitude);
-        }
-        console.log("Lat: "+coords.latitude+" Long: "+coords.longitude);
-        
+            console.log(coords);
+            
+        }*/
+        console.log("Lat: "+coords.lat+" Long: "+coords.long);
+        callback(formName,startL,coords.lat,coords.long);
 }
 
 

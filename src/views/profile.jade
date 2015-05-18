@@ -8,16 +8,6 @@ block body
       a(href="/logout") Log out
   section
     h1 Profile page
-    form#locationsForm(class="domoForm", name="domoForm", action="/maker", method="POST")
-      div#formActions
-          label(for="name") Longitude: 
-          input#longitude(type="text", name="longitude", placeholder="longitude")
-          label(for="age") Latitude: 
-          input#latitude(type="text", name="latitude", placeholder="latitude")
-          a#getLocations(class="getButton", href="#") Get Location
-          a#setLocations(class="submitbutton", href="#") Submit Locations 
-      div#errorMessage
-  img(class="ajaxLoader", src="/assets/img/ajax-loader.gif" alt="Loading Image")
   section#Locations
     if !adventures || adventures.length == 0
         div.location

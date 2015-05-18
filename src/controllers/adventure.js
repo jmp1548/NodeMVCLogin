@@ -17,7 +17,7 @@ var profilePage = function(req, res) {
         console.log(docs);
         if(docs[0] !='undefined'){
            var adventure=docs[0];
-           console.log(adventure);
+           //console.log(adventure);
            
            //req.session.adventure = adventure.toAPI();
            }
@@ -138,10 +138,10 @@ var adventurePoint = function(req, res) {
             console.log(err);
             return res.status(400).json({error:'An error occurred'}); 
         }
-
-        res.json({msg:"path made"});
+        console.log(newCoords);
+        
     });
-    
+    res.json({msg:"path made"});
     
 };
 var adventurePost = function(req, res) {
@@ -170,9 +170,9 @@ var adventurePost = function(req, res) {
             return res.status(400).json({error:'An error occurred'}); 
         }
 
-        res.json({msg: 'post made'});
+       
     });
-    
+     res.json({msg: 'post made'});
 };
 
 

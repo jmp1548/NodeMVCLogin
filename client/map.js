@@ -25,7 +25,9 @@ function showCoords(position) {
     map.setZoom(30);
 
     locations.push({
-        latlng: new google.maps.LatLng(lat, long)
+        latlng: new google.maps.LatLng(lat, long),
+        lat:lat,
+        long:long
     });
 
     var startInfowindow = new google.maps.InfoWindow({
@@ -99,6 +101,12 @@ function clearWatch(watchId) {
 
 $('#endAdventure').on('click', function () {
     clearWatch(watchId);
+    for(var i=0; i<locations.length; i++){
+        var lat=locations[i].lat;
+        var long=locations[i].long;
+        submitForm("pointForm","o",lat,long);
+    }
+    //console.log(" points saved");
 });
 
 window.onload = init;

@@ -54,14 +54,14 @@ function init() {
             map: map,
             info: content
         });
-        var content = "<h3>"+points[j].content+"</h3>";
-        var Infowindow = new google.maps.InfoWindow({
-            content: content
-        });
-        google.maps.event.addListener(marker, 'click', function () {
-            Infowindow.setContent(this.info);
-            Infowindow.open(map, this);
-        });
+        var content = "<h3>" + points[j].content + "</h3>";
+        var Infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(marker, 'click', function (content) {
+            return function () {
+                Infoindow.setContent(content);
+                Infoindow.open(map, this);
+            }
+        }(content));
     }
 
     poly = new google.maps.Polyline(polyOptions);

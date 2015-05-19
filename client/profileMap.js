@@ -1,7 +1,7 @@
 "use strict";
 
 var map;
-var startInfowindow;
+//var startInfowindow;
 var marker;
 var titles;
 var ids;
@@ -22,7 +22,7 @@ function init() {
     };
 
     map = new google.maps.Map(document.getElementById('map-div'), mapOptions);
-    
+
     for (var i = 0; i < adventures.length; i++) {
         var position = new google.maps.LatLng(adventures[i].latitude, adventures[i].longitude);
         console.log(position);
@@ -30,17 +30,18 @@ function init() {
             position: position,
             animation: google.maps.Animation.DROP,
             map: map,
-            info: content
         });
-        
-        var content = "<h1>"+adventures[i].title+"</h1><br/><small><a href=/pastadventure/"+adventures[i]._id+">Click to see "+adventures[i].title+"</a></small>";
-        startInfowindow = new google.maps.InfoWindow({
-            content: content
-        });
-        google.maps.event.addListener(marker, 'click', function () {
-            startInfowindow.setContent(this.info);
-            startInfowindow.open(map, this);
-        });
+        var startInfoWindow = new google.maps.InfoWindow();
+        var content = "<h1>" + adventures[i].title + "</h1><br/><small><a href=/pastadventure/" + adventures[i]._id + ">Click to see " + adventures[i].title + "</a></small>";
+        //startInfowindow = new google.maps.InfoWindow({
+        //  content: content
+        //});
+        google.maps.event.addListener(marker, 'click', function (content) {
+            return function () {
+                startInfoWindow.setContent(content);
+                startInfoWindow.open(map, this);
+            }
+        }(content));
 
         bounds.extend(marker.position);
     }

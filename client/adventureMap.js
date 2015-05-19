@@ -3,9 +3,8 @@
 var map;
 var marker;
 var poly;
-var watchId;
+var interaval;
 var locations = [];
-var watchCount = 0;
 
 var geoOptions = {
     enableHighAccuracy: true
@@ -18,8 +17,6 @@ function getLocation() {
 }
 
 function showCoords(position) {
-    watchCount++;
-
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
 
@@ -65,15 +62,8 @@ function geoError(error) {
 }
 
 function init() {
-    window.setInterval(function () {
-        if (watchCount <= 2) {
-            watchId = navigator.geolocation.watchPosition(showCoords, geoError, geoOptions);
-        }
-        if (watchCount >= 2) {
-            clearWatch(watchId);
-            watchCount = 0;
-        }
-    }, 5000);
+    
+    window.location.href = "#openModal";
 
     if (!navigator.geolocation) {
         output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
@@ -111,13 +101,19 @@ function clearWatch(watchId) {
 }
 
 $('#endAdventure').on('click', function () {
-    clearWatch(watchId);
+    clearInterval(interaval);
     for(var i=0; i<locations.length; i++){
         var lat=locations[i].lat;
         var long=locations[i].long;
         submitForm("pointForm","o",lat,long);
     }
-    //console.log(" points saved");
+    window.location.href = "/profile";
+});
+
+$('#addAdventure').on('click', function(){
+    interaval = setInterval(function () {
+        navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
+    }, 5000);
 });
 
 window.onload = init;

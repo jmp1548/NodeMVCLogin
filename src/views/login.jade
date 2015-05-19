@@ -9,25 +9,16 @@ block body
   label(for="nav-trigger")
     i(class="fa fa-bars")
   div(class="site-wrap")
-      a(href="#openModal") Open Modal
-      div#openModal(class="modalDialog")
-        div
-            a(href="#close")
-                i#close(class="close fa fa-times")
-            h2 Hello
       section(class="wrapper")
         div#login
             img(class="logo", src="/assets/img/logo.png" alt="Logo")
             form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
               div#username
-                  //label(for="username") Username: 
                   input#user(type="text", name="username", placeholder="Username")
               div#password
-                  //label(for="pass") Password: 
                   input#pass(type="password", name="pass", placeholder="Password" class="")
               div(class="clear")
+              small#errorMessage
               input#loginSubmit(class="formSubmit", type="submit", value="Sign In")
-        //span#errorMessage Wrong username or password
-        //div#footer Copyright @2011
 block scripts
     script(src="/assets/client.js")

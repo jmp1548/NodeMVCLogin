@@ -1,81 +1,96 @@
 /* Navigation Menu - Background */
+
 .navigation {
-  /* critical sizing and position styles */
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  
-  list-style: none;
-  background: black;
+    /* critical sizing and position styles */
+    
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    background: black;
 }
 
 .nav-item {
-  width: 200px;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+    width: 200px;
 }
 
 .nav-item a {
-  display: block;
-  padding: 1em;
-  color: #fff;
-  font-size: 1.2em;
-  text-decoration: none;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    display: block;
+    padding: 1em;
+    color: #fff;
+    font-size: 1.2em;
+    text-decoration: none;
 }
 
 .nav-item a:hover {
-  color: gray;
+    color: gray;
 }
 
 .site-wrap {
-  min-height: 100%;
-  min-width: 100%;
-  background-color: white; 
-  position: relative;
-  top: 0;
-  bottom: 100%;
-  left: 0;
-  z-index: 1;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: white;
+    position: relative;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    z-index: 1;
 }
 
 .nav-trigger {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
 }
 
 label[for="nav-trigger"] {
-  position: fixed;
-  left: 15px; top: 15px;
-  z-index: 2;
-  cursor: pointer;
-    
-    i{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 2;
+    cursor: pointer;
+    i {
         font-size: 3em;
     }
 }
 
 .nav-trigger + label {
-  transition: left 0.2s;
+    transition: left 0.2s;
 }
 
 .nav-trigger:checked + label {
-  left: 215px;
+    left: 215px;
 }
 
 .nav-trigger:checked ~ .site-wrap {
-  left: 200px;
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+    left: 200px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
+}
+/* Micro reset */
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Micro reset */
-*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
-html, body { height: 100%; width: 100%; font-family: Helvetica, Arial, sans-serif; }
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+}

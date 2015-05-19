@@ -1,9 +1,10 @@
 extends ./base.jade
 block append style
-    link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
 block body
   ul(class="navigation")
     li(class="nav-item")
+        a(href="/profile") Profile
+        a(href="/adventure") Adventure
         a(href="/logout") Log Out
   input#nav-trigger(type="checkbox" class="nav-trigger")
   label(for="nav-trigger")
@@ -16,17 +17,17 @@ block body
         div#entries
         div#add
       section(class="wrapper")
-        h1 Adventure Page
-            button#endAdventure End Adventure    
+        button#endAdventure End Adventure    
         form#adventureForm(class="adventureForm", name="adventureForm", action="/start", method="POST")
             div#formActions
-                input(type="hidden")
-                h2 Start new adventure form
-                label(for="title") Title: 
-                input#atitle(type="text", name="title", placeholder="title")
+                div#openModal(class="modalDialog")
+                    div
+                        h2 Please Enter A Title For Your Adventure 
+                        input#atitle(type="text", name="title", placeholder="Title")
+                        br
+                        a#addAdventure(class="submitbutton", href="#") Start Adventure 
                 input#alongitude(type="hidden", name="longitude", placeholder="longitude")
                 input#alatitude(type="hidden", name="latitude", placeholder="latitude")
-                a#addAdventure(class="submitbutton", href="#") Start Adventure 
             div#errorMessage
         form#pointForm(class="pointForm", name="pointForm", action="/point", method="POST")
             div#formActions

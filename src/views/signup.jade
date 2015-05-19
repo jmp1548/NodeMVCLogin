@@ -1,22 +1,28 @@
 extends ./base.jade
 block append style
-    link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
 block body
-  nav
-    a(href="/login")
-    .navlink
-      a(href="/login") Login
-    .navlink
-      a(href="/signup") Sign up
-  section#signup
-    form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
-      label(for="username") Username: 
-      input#user(type="text", name="username", placeholder="username")
-      label(for="pass") Password: 
-      input#pass(type="password", name="pass", placeholder="password")
-      label(for="pass2") Password: 
-      input#pass2(type="password", name="pass2", placeholder="retype password")
-      a#signupSubmit(class="formSubmit", href="#") Sign up
-      span#errorMessage
+  ul(class="navigation")
+    li(class="nav-item")
+        a(href="/login") Login
+        a(href="/signup") Sign Up
+  input#nav-trigger(type="checkbox" class="nav-trigger")
+  label(for="nav-trigger")
+    i(class="fa fa-bars")
+  div(class="site-wrap")
+      section(class="wrapper")
+            div#signup
+                img(class="logo", src="/assets/img/logo.png" alt="Logo")
+                form#signupForm(class="mainForm", name="loginForm", action="/login", method="POST")
+                  div#username 
+                      input#user(type="text", name="username", placeholder="Username")
+                  div#password
+                      input#pass(type="password", name="pass", placeholder="Password" class="")
+                  div#password
+                      input#pass2(type="password", name="pass", placeholder="Password" class="")
+                  div(class="clear")
+                  small#errorMessage
+                  input#signupSubmit(class="formSubmit", type="submit", value="Sign Up")
+                  
+
 block scripts
         script(src="/assets/client.js")

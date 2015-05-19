@@ -1,9 +1,15 @@
 "use strict";
 
 var map;
+var startInfowindow;
+var marker;
+var titles;
+var ids;
 
 function init() {
     var bounds = new google.maps.LatLngBounds();
+
+    console.log(adventures);
 
     var mapOptions = {
         center: {
@@ -16,20 +22,29 @@ function init() {
     };
 
     map = new google.maps.Map(document.getElementById('map-div'), mapOptions);
-
+    
     for (var i = 0; i < adventures.length; i++) {
         var position = new google.maps.LatLng(adventures[i].latitude, adventures[i].longitude);
         console.log(position);
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: position,
             animation: google.maps.Animation.DROP,
-            map: map
+            map: map,
+            info: content
         });
-    
-         bounds.extend(marker.position);
+        
+        var content = "<h1>"+adventures[i].title+"</h1><br/><small><a href=/pastadventure/"+adventures[i]._id+">Click to see "+adventures[i].title+"</a></small>";
+        startInfowindow = new google.maps.InfoWindow({
+            content: content
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            startInfowindow.setContent(this.info);
+            startInfowindow.open(map, this);
+        });
+
+        bounds.extend(marker.position);
     }
-
     map.fitBounds(bounds);
-
 }
+
 window.onload = init;

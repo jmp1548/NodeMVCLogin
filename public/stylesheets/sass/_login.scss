@@ -1,6 +1,6 @@
 .wrapper {
     @include outer-container;
-    #login {
+    #login, #signup {
         height: 300px;
         @include span-columns(6);
         @include shift(3);
@@ -29,13 +29,24 @@
             //@include shift(2);
             padding: 10px;
             position: relative;
-          
         }
-        #loginSubmit {
+        #password2 {
+            //@include shift(2);
+            padding: 10px;
+            position: relative;
+        }
+        #loginSubmit,
+        #signupSubmit {
             color: black;
             margin-top: 30px;
             padding: 10px;
             text-align: center;
+        }
+        #errorMessage {
+            color: red;
+            position: absolute;
+            left: 30px;
+            right: 30px;
         }
     }
 }

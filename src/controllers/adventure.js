@@ -94,11 +94,17 @@ var pastAdventurePage = function (req, res) {
                 for (var i = 0; i < docs.length; i++) {
                     newDocs.push(docs[i].toAPI());
                 }
+                
+                var newPoints = [];
+                for (var i = 0; i < points.length; i++) {
+                    newPoints.push(points[i].toAPI());
+                }
 
                 res.render('existingadventure', {
                     path: docs,
                     pathArray: JSON.stringify(newDocs),
                     posts: points,
+                    pointsArray: JSON.stringify(newPoints),
                     adventure: adventureid
                 });
             });

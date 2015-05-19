@@ -61,7 +61,7 @@ app.use(session({
 }));    
 app.set('view engine', 'jade'); 
 app.set('views', __dirname + '/views'); 
-app.use(favicon(__dirname + '/../client/img/ajax-loader.gif')); 
+app.use(favicon(__dirname + '/../client/img/logo.png')); 
 app.use(cookieParser()); 
 
 router(app); 

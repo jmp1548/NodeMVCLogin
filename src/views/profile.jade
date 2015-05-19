@@ -3,27 +3,24 @@ block append style
     link(rel="stylesheet", type="text/css", href="/assets/stylesheet.css")
     link(rel="stylesheet", type="text/css", href="/public/stylesheets/app.css")
 block body
-  nav
-    a(href="/login")
-    .navlink
-      a(href="/logout") Log out
-  div#map-div
-  div#map-controls
-  section
-    h1 Profile page
-  section#Locations
-    if !adventures || adventures.length == 0
-        div.location
-            h3.emptyLocations No Locations yet
-    else
-        each val in adventures
-            div.location
-                a(href="/pastadventure/"+val._id)
-                    h3.title Title: #{val.title}
-                    h3.longitude Longitude: #{val.longitude}
-                    h3.latitude Latitude: #{val.latitude}
-  script(src="/assets/locator.js")
-  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6RYGB6WBp3etiIGhfuFE6CBpjAo-hJW4")
-  script(type="text/javascript").
-    var adventures = !{adventuresArray}
-  script(src="/assets/profileMap.js")
+ ul(class="navigation")
+    li(class="nav-item")
+        a(href="/profile") Profile
+        a(href="/adventure") Adventure
+        a(href="/logout") Log Out
+ input#nav-trigger(type="checkbox" class="nav-trigger")
+ label(for="nav-trigger")
+    i(class="fa fa-bars")
+  div(class="site-wrap")
+      div#map-div
+      div#map-controls
+        div#welcome Welcome #{owner}
+        div#numAdventure
+        div#entries
+        div#add
+      
+      script(src="/assets/locator.js")
+      script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6RYGB6WBp3etiIGhfuFE6CBpjAo-hJW4")
+      script(type="text/javascript").
+        var adventures = !{adventuresArray}
+      script(src="/assets/profileMap.js")

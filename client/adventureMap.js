@@ -70,10 +70,6 @@ function init() {
         return;
     }
 
-    //watchId = GeolocationThrottle.watchPosition(showCoords, geoError, geoOptions), {
-    //  throttleTime: 5000
-    ///};
-
     var mapOptions = {
         center: {
             lat: 39.828127,
@@ -113,7 +109,7 @@ $('#endAdventure').on('click', function () {
 $('#addAdventure').on('click', function(){
     interaval = setInterval(function () {
         navigator.geolocation.getCurrentPosition(showCoords, geoError, geoOptions);
-    }, 5000);
+    }, 3000);
 });
 
 window.onload = init;

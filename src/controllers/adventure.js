@@ -72,8 +72,8 @@ var pastAdventurePage = function(req, res) {
                                 return res.status(400).json({error:'An error occurred'}); 
                             }
                             console.log(points);
-                    
-                    res.render('existingadventure', {path: docs, posts: points, adventure:req.session.adventure});
+                    req.session.adventure._id=adventureid.toAPI();
+                    res.render('existingadventure', {path: docs, posts: points, adventure:adventureid});
                     });
                 });
        }  

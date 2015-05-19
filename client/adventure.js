@@ -6,7 +6,7 @@ $(document).ready(function() {
         $("#errorMessage").text(message);
      }
     
-    
+   
     $("#addAdventure").on("click", addAdventure);
     $("#addPoint").on("click", addPoint);
     $("#addPost").on("click", addPost);
@@ -84,5 +84,6 @@ function addLocation(formName,startL,callback){
         console.log("Lat: "+coords.latitude+" Long: "+coords.longitude);
         
 }
+
 
 

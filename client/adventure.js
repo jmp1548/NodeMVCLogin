@@ -32,7 +32,7 @@ function sendAjax(action, data) {
 function addAdventure(){
        
         if($("#atitle").val() === '') {
-            handleError("All fields are required");
+            //handleError("All fields are required");
             return false;
         }
       
@@ -46,7 +46,7 @@ function addPoint(){
 function addPost(){
        
         if($("#post").val() === '') {
-            handleError("All fields are required");
+            //handleError("All fields are required");
             return false;
         }
       
@@ -60,6 +60,10 @@ function submitForm(formName,startL, latitude, longitude){
     sendAjax($("#"+formName).attr("action"), $("#"+formName).serialize());
 }
    
+$('#addPost').on('click', function(){
+    $('#post').val("");
+    $('#postFeedback').innerHTML = "hey";
+});
     
     
     $('.ajaxLoader').hide();

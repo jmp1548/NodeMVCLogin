@@ -83,7 +83,7 @@ function init() {
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById('map-div'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-div-short'), mapOptions);
 
     var polyOptions = {
         strokeColor: '#FF0000',

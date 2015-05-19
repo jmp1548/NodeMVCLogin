@@ -1,5 +1,6 @@
 .wrapper {
     @include outer-container;
+    text-align: center;
     #login, #signup {
         height: 300px;
         @include span-columns(6);
@@ -10,8 +11,6 @@
         top: 15%;
         right: 0;
         left: 0;
-        //@include box-shadow(1px, 1px, 3px, #000);
-        //@include border-radius(5px);
     }
     .logo {
         margin-top: 10%;

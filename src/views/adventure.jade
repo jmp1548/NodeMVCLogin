@@ -10,12 +10,12 @@ block body
   label(for="nav-trigger")
         i(class="fa fa-bars")
   div(class="site-wrap")
-      div#map-div
-      div#map-controls
-        div#welcome
-        div#numAdventure
-        div#entries
-        div#add
+      div#map-div-short
+      //div#map-controls
+       // div#welcome
+       // div#numAdventure
+       // div#entries
+       // div#add
       section(class="wrapper")
         button#endAdventure End Adventure    
         form#adventureForm(class="adventureForm", name="adventureForm", action="/start", method="POST")
@@ -36,9 +36,9 @@ block body
             div#errorMessage
         form#postForm(class="postForm", name="postForm", action="/post", method="POST")
             div#formActions
-                h2 Add a text Post
-                label(for="post") Post: 
+                h2 Add A Post To Your Current Locations
                 input#post(type="text", name="post", placeholder="post content goes here")
+                div#postFeedback
                 input#plongitude(type="hidden", name="longitude", placeholder="longitude")
                 input#platitude(type="hidden", name="latitude", placeholder="latitude")
                 a#addPost(class="submitbutton", href="#") Submit Post 

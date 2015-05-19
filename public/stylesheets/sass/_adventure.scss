@@ -1,5 +1,10 @@
 #map-div {
-    height: 75%;
+    height: 100%;
+    width: 100%;
+}
+
+#map-div-short {
+    height: 65%;
     width: 100%;
 }
 
@@ -29,5 +34,27 @@
         @include omega();
         background: gray;
         height: 100%;
+    }
+}
+
+#endAdventure {
+    margin-top: 20px;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+#formActions {
+    margin-top: 20px;
+}
+
+.submitButton {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: black;
+    &:hover{
+        color: gray;
     }
 }

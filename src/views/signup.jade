@@ -12,17 +12,18 @@ block body
       section(class="wrapper")
             div#signup
                 img(class="logo", src="/assets/img/logo.png" alt="Logo")
-                form#signupForm(class="mainForm", name="loginForm", action="/login", method="POST")
+                form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
                   div#username 
                       input#user(type="text", name="username", placeholder="Username")
                   div#password
-                      input#pass(type="password", name="pass", placeholder="Password" class="")
+                      input#pass(type="password", name="pass", placeholder="Password")
                   div#password
-                      input#pass2(type="password", name="pass", placeholder="Password" class="")
+                      input#pass2(type="password", name="pass2", placeholder="Password")
                   div(class="clear")
                   small#errorMessage
-                  input#signupSubmit(class="formSubmit", type="submit", value="Sign Up")
-                  
-
+                  input#signupSubmit(type="submit", class="formSubmit", value="Sign Up")
 block scripts
         script(src="/assets/client.js")
+        
+        
+        

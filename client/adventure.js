@@ -61,7 +61,7 @@ function submitForm(formName,startL, latitude, longitude){
 }
    
 $('#addPost').on('click', function(){
-    $('#post').val("");
+    //$('#post').val("");
     $('#postFeedback').innerHTML = "hey";
 });
     

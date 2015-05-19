@@ -58,8 +58,8 @@ function init() {
         var Infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker, 'click', function (content) {
             return function () {
-                Infoindow.setContent(content);
-                Infoindow.open(map, this);
+                Infowindow.setContent(content);
+                Infowindow.open(map, this);
             }
         }(content));
     }

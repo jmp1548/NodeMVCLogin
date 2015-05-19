@@ -6,6 +6,7 @@ block body
     a(href="/login")
     .navlink
       a(href="/logout") Log out
+  div#map-div
   section
     h1 #{adventure.title}
   section#Locations
@@ -31,3 +32,7 @@ block body
                 h3.content Content: #{val.content}
 block scripts
         script(src="/assets/locator.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6RYGB6WBp3etiIGhfuFE6CBpjAo-hJW4")
+        script(type="text/javascript").
+            var adventures = !{pathArray}
+        script(src="/assets/previousMap.js")

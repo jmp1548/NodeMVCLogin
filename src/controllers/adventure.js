@@ -22,13 +22,14 @@ var profilePage = function (req, res) {
             //console.log(adventure);
 
             //req.session.adventure = adventure.toAPI();
-        }   
+        }
         var newDocs = [];
-        for(var i = 0;i < docs.length; i++){
-            newDocs.push(docs[i].toAPI()); 
+        for (var i = 0; i < docs.length; i++) {
+            newDocs.push(docs[i].toAPI());
         }
         res.render('profile', {
-            adventures: JSON.stringify(newDocs)
+            adventuresArray: JSON.stringify(newDocs),
+            adventures: docs
         });
 
     });
@@ -89,10 +90,16 @@ var pastAdventurePage = function (req, res) {
                 }
                 console.log(points);
 
+                var newDocs = [];
+                for (var i = 0; i < docs.length; i++) {
+                    newDocs.push(docs[i].toAPI());
+                }
+
                 res.render('existingadventure', {
                     path: docs,
+                    pathArray: JSON.stringify(newDocs),
                     posts: points,
-                    adventure: req.session.adventure
+                    adventure: adventureid
                 });
             });
         });

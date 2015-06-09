@@ -1,5 +1,4 @@
 # NodeMVCLogin
-# FacetProject
 
 A mobile optimized website which tracks, saves, and displays user made adventures.
 
